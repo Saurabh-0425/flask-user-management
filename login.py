@@ -1,8 +1,9 @@
-from flask import Flask,session,request,Response,redirect,url_for,render_template,flash
+from flask import Flask, session, request, redirect, url_for, render_template, flash
+import os
 from flask_sqlalchemy import SQLAlchemy
 from forms import Registration
 app = Flask(__name__)
-app.secret_key="123"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///users.db"
 db = SQLAlchemy(app)
 class User(db.Model):
