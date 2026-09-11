@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <div class="dashboard-card">
+
+        <div class="dashboard-icon">
+            U
+        </div>
+
+        <p class="dashboard-small">
+            USER DASHBOARD
+        </p>
+
+        <h1>
+            Welcome
+            <span>{{ user }}</span> 👋
+        </h1>
+
+        <p class="dashboard-description">
+            You are successfully logged in.
+            Manage and view your users from your dashboard.
+        </p>
+
+        <a href="{{ url_for('users') }}" class="users-btn">
+            Check Users
+            <span>→</span>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

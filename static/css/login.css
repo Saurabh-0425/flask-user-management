@@ -1,0 +1,291 @@
+/* ========================================
+   BASIC RESET
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+}
+
+
+/* ========================================
+   LOGIN CARD
+======================================== */
+
+.login {
+    width: 450px;
+
+    margin: 70px auto;
+
+    padding: 35px 40px;
+
+    background-color: white;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.20);
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
+
+.login h1 {
+    text-align: center;
+
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    color: #2d3748;
+
+    font-size: 30px;
+}
+
+
+/* Heading underline */
+
+.login h1::after {
+    content: "";
+
+    display: block;
+
+    width: 60px;
+    height: 4px;
+
+    margin: 10px auto 0;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #667eea,
+        #764ba2
+    );
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.login form {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+/* ========================================
+   LABELS
+======================================== */
+
+.login label {
+    margin-bottom: 7px;
+
+    color: #4a5568;
+
+    font-size: 15px;
+
+    font-weight: bold;
+}
+
+
+/* ========================================
+   INPUT FIELDS
+======================================== */
+
+.login input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background-color: #f8fafc;
+
+    color: #2d3748;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Input hover */
+
+.login input:hover {
+    border-color: #a0aec0;
+}
+
+
+/* Input focus */
+
+.login input:focus {
+    border-color: #667eea;
+
+    background-color: white;
+
+    box-shadow:
+        0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+
+/* ========================================
+   ERROR MESSAGES
+======================================== */
+
+.login .error {
+    margin-top: -15px;
+
+    margin-bottom: 15px;
+
+    color: #e53e3e;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   FLASH MESSAGE
+======================================== */
+
+.login .flash-message {
+    padding: 12px 15px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    background-color: #fff5f5;
+
+    border: 1px solid #feb2b2;
+
+    color: #c53030;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   LOGIN BUTTON
+======================================== */
+
+.login-btn {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(102, 126, 234, 0.30);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* ========================================
+   BUTTON HOVER
+======================================== */
+
+.login-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(102, 126, 234, 0.40);
+}
+
+
+/* ========================================
+   BUTTON CLICK
+======================================== */
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   MOBILE RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .login {
+        width: 90%;
+
+        margin: 40px auto;
+
+        padding: 30px 25px;
+    }
+
+
+    .login h1 {
+        font-size: 26px;
+    }
+
+
+    .login input {
+        font-size: 14px;
+    }
+
+
+    .login-btn {
+        font-size: 15px;
+    }
+}

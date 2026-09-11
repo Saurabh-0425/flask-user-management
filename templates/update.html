@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Update User{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/update.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="Updates">
+
+    <h1>Update User</h1>
+
+    <form method="POST">
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            name="name"
+            value="{{ user.name }}"
+        >
+
+        <label>Password</label>
+
+        <input
+            type="text"
+            name="password"
+            value="{{ user.password }}"
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            value="{{ user.email }}"
+        ><br>
+
+        <button type="submit">
+            Update User
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

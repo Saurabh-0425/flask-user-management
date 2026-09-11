@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+{% endblock%}
+{% block content %}
+<div class="login">
+{% with messages = get_flashed_messages() %}
+    {% for msg in messages %}
+       <p> {{ msg }}</p>
+    {% endfor %}
+    {% endwith %}
+<form method="post">
+{{ form.hidden_tag() }}
+<br>
+{{form.name.label }}
+<br>
+{{form.name(placeholder="Enter the username")}} 
+<br><br>
+{{form.password.label}}<br>
+{{form.password(placeholder="Enter the Password")}}
+{% if form.password.errors %}
+   {% for error in form.password.errors %}
+   <p>{{ error}}</p>
+{% endfor %}
+{% endif %}
+
+<br><br>
+{{form.email.label}}<br>
+{{form.email(placeholder="Enter Email ID ")}}<br><br>
+{% if form.email.errors %}
+   {% for error in form.email.errors %}
+   <p>{{error}}</p>
+{% endfor %}
+{% endif %}
+
+{{form.submit }}
+</form>
+</div>
+{% endblock %}

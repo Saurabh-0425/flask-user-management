@@ -1,0 +1,358 @@
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+
+    min-height: 100vh;
+}
+
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+
+.Users-container {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 50px auto;
+    padding: 35px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* ================================
+   HEADING
+================================ */
+
+.Users-container h1 {
+    text-align: center;
+
+    font-size: 38px;
+
+    margin: 0 0 10px;
+
+    color: #2d3748;
+
+    letter-spacing: 1px;
+}
+
+
+/* Small line below heading */
+
+.Users-container h1::after {
+    content: "";
+
+    display: block;
+
+    width: 70px;
+    height: 4px;
+
+    margin: 12px auto 25px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #667eea,
+        #764ba2
+    );
+}
+
+
+/* ================================
+   LOGIN AGAIN
+================================ */
+
+.Users-container h3 {
+    text-align: center;
+
+    margin-bottom: 35px;
+
+    font-size: 16px;
+
+    font-weight: normal;
+}
+
+.Users-container h3 a {
+    text-decoration: none;
+
+    color: #667eea;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.Users-container h3 a:hover {
+    color: #764ba2;
+
+    text-decoration: underline;
+}
+
+
+/* ================================
+   USER CARD
+================================ */
+
+.user_card {
+    position: relative;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f8f9ff
+    );
+
+    padding: 25px;
+
+    margin: 20px 0;
+
+    border-radius: 15px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Card hover */
+
+.user_card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Left coloured border */
+
+.user_card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 5px;
+    height: 100%;
+
+    border-radius: 15px 0 0 15px;
+
+    background: linear-gradient(
+        180deg,
+        #667eea,
+        #764ba2
+    );
+}
+
+
+/* ================================
+   USER INFORMATION
+================================ */
+
+.user_card p {
+    margin: 0;
+
+    padding-left: 10px;
+
+    font-size: 17px;
+
+    line-height: 2;
+
+    color: #4a5568;
+}
+
+
+/* First line - Name */
+
+.user_card p::first-line {
+    color: #2d3748;
+
+    font-weight: 600;
+}
+
+
+/* ================================
+   ACTION BUTTONS
+================================ */
+
+.actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+    padding-left: 10px;
+}
+
+
+/* Common button styling */
+
+.update-btn,
+.delete-btn {
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* ================================
+   UPDATE BUTTON
+================================ */
+
+.update-btn {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #38a169,
+        #2f855a
+    );
+
+    box-shadow:
+        0 4px 10px rgba(56, 161, 105, 0.3);
+}
+
+.update-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px rgba(56, 161, 105, 0.4);
+
+    background: linear-gradient(
+        135deg,
+        #2f855a,
+        #276749
+    );
+}
+
+
+/* ================================
+   DELETE BUTTON
+================================ */
+
+.delete-btn {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #e53e3e,
+        #c53030
+    );
+
+    box-shadow:
+        0 4px 10px rgba(229, 62, 62, 0.3);
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 15px rgba(229, 62, 62, 0.4);
+
+    background: linear-gradient(
+        135deg,
+        #c53030,
+        #9b2c2c
+    );
+}
+
+
+/* ================================
+   HORIZONTAL LINE
+================================ */
+
+.Users-container hr {
+    border: none;
+
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #cbd5e0,
+        transparent
+    );
+
+    margin: 25px 0;
+}
+
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 600px) {
+
+    .Users-container {
+        width: 94%;
+
+        padding: 20px;
+
+        margin: 25px auto;
+    }
+
+    .Users-container h1 {
+        font-size: 30px;
+    }
+
+    .user_card {
+        padding: 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .update-btn,
+    .delete-btn {
+        text-align: center;
+
+        width: 100%;
+    }
+}

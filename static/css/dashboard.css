@@ -1,0 +1,311 @@
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed,
+            #9333ea
+        );
+
+    min-height: 100vh;
+}
+
+
+/* ========================================
+   DASHBOARD PAGE
+======================================== */
+
+.dashboard-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* ========================================
+   DASHBOARD CARD
+======================================== */
+
+.dashboard-card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 55px 60px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation: dashboardAppear 0.6s ease;
+}
+
+
+/* ========================================
+   CARD ANIMATION
+======================================== */
+
+@keyframes dashboardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   DASHBOARD ICON
+======================================== */
+
+.dashboard-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+
+/* ========================================
+   SMALL HEADING
+======================================== */
+
+.dashboard-small {
+
+    margin: 0 0 12px;
+
+    color: #8b5cf6;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+/* ========================================
+   MAIN HEADING
+======================================== */
+
+.dashboard-card h1 {
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 42px;
+
+    letter-spacing: -1.5px;
+}
+
+
+/* Username */
+
+.dashboard-card h1 span {
+
+    color: #7c3aed;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.dashboard-description {
+
+    max-width: 470px;
+
+    margin: 20px auto 35px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   USERS BUTTON
+======================================== */
+
+.users-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    min-width: 200px;
+
+    padding: 14px 24px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px rgba(124, 58, 237, 0.3);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Arrow */
+
+.users-btn span {
+
+    font-size: 20px;
+
+    transition: transform 0.2s ease;
+}
+
+
+/* Hover */
+
+.users-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 28px rgba(124, 58, 237, 0.4);
+}
+
+
+.users-btn:hover span {
+
+    transform: translateX(5px);
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .dashboard-page {
+
+        padding: 20px;
+    }
+
+
+    .dashboard-card {
+
+        padding: 40px 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .dashboard-card h1 {
+
+        font-size: 32px;
+    }
+
+
+    .dashboard-description {
+
+        font-size: 14px;
+    }
+
+
+    .dashboard-icon {
+
+        width: 65px;
+
+        height: 65px;
+
+        font-size: 25px;
+    }
+
+
+    .users-btn {
+
+        width: 100%;
+    }
+}

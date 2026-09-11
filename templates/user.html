@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Users {% endblock %}
+ {% block css %}
+ <link rel="stylesheet" href = "{{url_for('static',filename='css/users.css')}}">
+ {% endblock%}
+{% block content %}
+<div class="Users-container">
+<h1> All Users</h1>
+<h3><a href="{{url_for('login')}}">Login Again</a></h3>
+{% for user in users %}
+ <div class="user_card"><p>
+ Name : {{user.name }}<br>
+ ID: {{user.id}}<br>
+ Email: {{user.email}}
+</p><br>
+<div class=" actions">
+<a href="{{url_for('update',id=user.id)}}" style="text-decoration: none; color: green;">Update</a>
+<a href="{{url_for('delete',id=user.id)}}" style="text-decoration: none; color: red;">Delete</a>
+</div>
+</div>
+<hr>
+
+{% endfor%}
+</div>
+
+{% endblock %}
