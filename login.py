@@ -1,7 +1,9 @@
 from flask import Flask, session, request, redirect, url_for, render_template, flash
 import os
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exists
 from forms import Registration
+from werkzeug.security import generate_password_hash,check_password_hash;
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///users.db"
@@ -20,7 +22,12 @@ def login():
         name = form.name.data
         password= form.password.data
         email= form.email.data
-        user = User(name=name,password=password,email=email)
+        existing_user = db.session.query( exists().where(User.email==email)).scalar()
+        if existing_user:
+            flash(f"Email id already Exist ! Login again")
+            return redirect(url_for("login"))
+        hashed_password = generate_password_hash(password)
+        user = User(name=name,password=hashed_password,email=email)
         db.session.add(user)
         db.session.commit()
        
@@ -40,24 +47,45 @@ def invalid():
 def users():
     all_users= User.query.all()
     return render_template("user.html",users=all_users)
-@app.route("/update/<int:id>",methods=["GET","POST"])
+@app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id):
-    user = User.query.get(id)
-    if request.method=="POST":
-        user.name=request.form["name"]
-        user.email=request.form["email"]
-        user.password=request.form["password"]
-        db.session.commit()
-        
-        return redirect(url_for("users"))
-    return render_template("update.html",user=user)
-@app.route("/delete/<int:id>")
+
+    user = db.session.get(User, id)
+
+    if request.method == "POST":
+
+        current_password = request.form["password"]
+
+        if check_password_hash(user.password, current_password):
+
+            user.name = request.form["name"]
+            user.email = request.form["email"]
+
+            db.session.commit()
+
+            flash("User updated successfully!")
+            return redirect(url_for("users"))
+
+        else:
+
+            flash("Invalid Password!")
+            return redirect(url_for("users"))
+
+    return render_template("update.html", user=user)
+@app.route("/delete/<int:id>",methods=["GET","POST"])
 def delete(id):
-    user = User.query.get(id)
-    if user:
+    user = db.session.get(User,id)
+    if request.method=='POST':
+    
+     password=request.form["password"]
+     if check_password_hash(user.password,password):
         db.session.delete(user)
         db.session.commit()
+        return redirect(url_for("users"))
+     else :
+        flash(f"Invalid Password")
+        return redirect(url_for("users"))
       
-    return redirect(url_for("users"))
+    return render_template("check_password.html")
 if __name__=="__main__":
     app.run(debug=True)
