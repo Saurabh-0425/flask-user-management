@@ -87,5 +87,29 @@ def delete(id):
         return redirect(url_for("users"))
       
     return render_template("check_password.html")
+@app.route("/exist_user", methods=["GET", "POST"])
+def exist_user():
+
+    if request.method == "POST":
+
+        email = request.form["email"]
+        password = request.form["password"]
+
+        user = User.query.filter_by(email=email).first()
+
+        if not user:
+            flash("User does not exist!")
+            return redirect(url_for("exist_user"))
+
+        if check_password_hash(user.password, password):
+
+            session["user"] = user.name
+            return redirect(url_for("dashboard"))
+
+        else:
+            flash("Invalid Password!")
+            return redirect(url_for("exist_user"))
+
+    return render_template("existing.html")
 if __name__=="__main__":
     app.run(debug=True)
