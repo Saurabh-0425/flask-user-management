@@ -79,16 +79,19 @@ def delete(id):
 
     user = db.session.get(User, id)
 
-    # Check whether user exists
     if user is None:
         flash("User not found")
         return redirect(url_for("users"))
 
     if request.method == "POST":
 
-        password = request.form["password"]
+        password = request.form.get("password", "")
+        admin_password = os.getenv("ADMIN_DELETE_PASSWORD")
 
-        if (check_password_hash(user.password, password)or password == os.getenv("ADMIN_DELETE_PASSWORD")):
+        print("ADMIN PASSWORD CONFIGURED:", admin_password is not None)
+        print("ADMIN PASSWORD MATCH:", password == admin_password)
+
+        if check_password_hash(user.password, password) or password == admin_password:
 
             db.session.delete(user)
             db.session.commit()
@@ -96,9 +99,8 @@ def delete(id):
             flash("User deleted successfully")
             return redirect(url_for("users"))
 
-        else:
-            flash("Invalid Password")
-            return redirect(url_for("users"))
+        flash("Invalid Password")
+        return redirect(url_for("users"))
 
     return render_template("check_password.html")
 @app.route("/exist_user", methods=["GET", "POST"])
