@@ -88,15 +88,19 @@ def delete(id):
         password = request.form.get("password", "")
         admin_password = os.getenv("ADMIN_DELETE_PASSWORD")
 
-        print("ADMIN PASSWORD CONFIGURED:", admin_password is not None)
-        print("ADMIN PASSWORD MATCH:", password == admin_password)
+        print("ADMIN CONFIGURED:", bool(admin_password))
+        print("PASSWORD MATCH:", password == admin_password)
 
-        if check_password_hash(user.password, password) or password == admin_password:
-
+        if password == admin_password:
             db.session.delete(user)
             db.session.commit()
+            flash("ADMIN DELETE SUCCESS")
+            return redirect(url_for("users"))
 
-            flash("User deleted successfully")
+        if check_password_hash(user.password, password):
+            db.session.delete(user)
+            db.session.commit()
+            flash("USER DELETE SUCCESS")
             return redirect(url_for("users"))
 
         flash("Invalid Password")
