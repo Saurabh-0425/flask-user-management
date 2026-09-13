@@ -1,6 +1,8 @@
 from flask import Flask, session, request, redirect, url_for, render_template, flash
 import os
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+load_dotenv()
 from sqlalchemy import exists
 from forms import Registration
 from werkzeug.security import generate_password_hash,check_password_hash;
@@ -72,23 +74,32 @@ def update(id):
             return redirect(url_for("users"))
 
     return render_template("update.html", user=user)
-@app.route("/delete/<int:id>",methods=["GET","POST"])
+@app.route("/delete/<int:id>", methods=["GET", "POST"])
 def delete(id):
-    user = db.session.get(User,id)
-    if request.method=='POST':
-    
-     password=request.form["password"]
-     if check_password_hash(user.password,password):
-        db.session.delete(user)
-        db.session.commit()
+
+    user = db.session.get(User, id)
+
+    # Check whether user exists
+    if user is None:
+        flash("User not found")
         return redirect(url_for("users"))
-     elif(password=="Saurabh@#0425"):
-        db.session.delete(user)
-        db.session.commit()
-     else:
-        flash(f"Invalid Password")
-        return redirect(url_for("users"))
-      
+
+    if request.method == "POST":
+
+        password = request.form["password"]
+
+        if (check_password_hash(user.password, password)or password == os.getenv("ADMIN_DELETE_PASSWORD")):
+
+            db.session.delete(user)
+            db.session.commit()
+
+            flash("User deleted successfully")
+            return redirect(url_for("users"))
+
+        else:
+            flash("Invalid Password")
+            return redirect(url_for("users"))
+
     return render_template("check_password.html")
 @app.route("/exist_user", methods=["GET", "POST"])
 def exist_user():
